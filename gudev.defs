@@ -1,3 +1,11 @@
+;; FIXME: According to a comment in gudevtypes.h
+;; GUdevDeviceNumber:
+;; Corresponds to the standard #dev_t type as defined by POSIX (Until
+;; bug 584517 is resolved this is aliased to an integer).
+;;
+;; So I have replaced all occurances od GUDevDeviceNumber with int
+
+
 ;; -*- scheme -*-
 ; object definitions ...
 (define-object Client
@@ -59,7 +67,8 @@
   (return-type "GUdevDevice*")
   (parameters
     '("GUdevDeviceType" "type")
-    '("GUdevDeviceNumber" "number")
+;;    '("GUdevDeviceNumber" "number")
+    '("int" "number")
   )
 )
 
@@ -157,7 +166,8 @@
 (define-method get_device_number
   (of-object "GUdevDevice")
   (c-name "g_udev_device_get_device_number")
-  (return-type "GUdevDeviceNumber")
+;;  (return-type "GUdevDeviceNumber")
+  (return-type "int")
 )
 
 (define-method get_device_file

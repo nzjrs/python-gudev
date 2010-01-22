@@ -102,7 +102,6 @@ _wrap_g_udev_client_new(PyGObject *self, PyObject *args, PyObject *kwargs)
     static char *kwlist[] = { "subsystems", NULL };
     gchar **subsystems = NULL;
     PyObject *list;
-    GUdevClient *client = NULL;
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                         "O:GUdevClient.__init__",
