@@ -1,4 +1,4 @@
-defsdir = $(datadir)/pygtk/2.0/defs
+defsdir = $(datadir)/pygobject/2.0/defs
 defs_DATA = gudev.defs
 
 INCLUDES = \
