@@ -30,5 +30,6 @@ gudev.c: gudev.defs gudev.override
 
 update-defs:
 	$(PYGOBJECT_H2DEF) /usr/include/gudev-1.0/gudev/*.h > gudev-new.defs
-	
 
+release: dist
+	scp @PACKAGE@-@VERSION@.tar.gz root@greenbirdsystems.com:/var/www/johnstowers.co.nz/files/python-gudev/
