@@ -5,6 +5,7 @@ headers
 #include <gudev/gudev.h>
 #include "pygobject.h"
 
+/* Helper functions from gnome-python (gtksourceview) */
 static PyObject *
 _gslist_to_pylist_objs (const GSList *source)
 {
@@ -33,6 +34,7 @@ _gslist_to_pylist_strs (const GSList *source)
     return dest;
 }
 
+/* Helper function from pygobject (pygio-utils) */
 static gboolean
 _pylist_to_strv (PyObject *list, char ***strvp)
 {
@@ -98,17 +100,22 @@ static int
 _wrap_g_udev_client_new(PyGObject *self, PyObject *args, PyObject *kwargs)
 {
     static char *kwlist[] = { "subsystems", NULL };
-    gchar *subsystems = NULL;
+    gchar **subsystems = NULL;
+    PyObject *list;
     GUdevClient *client = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|z:GUdevClient.__init__",
-                                     kwlist, &subsystems))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                        "O:GUdevClient.__init__",
+                                        kwlist,
+                                        &list))
         return -1;
 
-    if (subsystems) {
-        gchar *foo[] = {"block", NULL};
-        pygobject_construct(self, "subsystems", foo, NULL);
+    if (!_pylist_to_strv(list, &subsystems)) {
+        PyErr_SetString(PyExc_RuntimeError, "could not convert list");
+        return -1;
     }
+        
+    pygobject_construct(self, "subsystems", subsystems, NULL);
 
     if (!self->obj) {
         PyErr_SetString(PyExc_RuntimeError, "could not create GUdevClient");
@@ -126,7 +133,7 @@ _wrap_g_udev_client_query_by_subsystem(PyGObject *self, PyObject *args, PyObject
     GSList *source;
     PyObject *dest;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|z:GUdevClient.query_by_subsystem",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:GUdevClient.query_by_subsystem",
                                      kwlist, &subsystem))
         return NULL;
 

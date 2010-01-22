@@ -1,7 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * gudevmodule.
- * Copyright (C) John Stowers 2008 <john.stowers@gmail.com>
+ * Copyright (C) John Stowers 2010 <john.stowers@gmail.com>
  * 
  * osm-gps-map.c is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
