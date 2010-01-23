@@ -176,6 +176,12 @@
   (return-type "const-gchar*")
 )
 
+(define-method get_device_file_symlinks
+  (of-object "GUdevDevice")
+  (c-name "g_udev_device_get_device_file_symlinks")
+  (return-type "const-gchar**")
+)
+
 (define-method get_parent
   (of-object "GUdevDevice")
   (c-name "g_udev_device_get_parent")
@@ -190,6 +196,12 @@
     '("const-gchar*" "subsystem")
     '("const-gchar*" "devtype")
   )
+)
+
+(define-method get_property_keys
+  (of-object "GUdevDevice")
+  (c-name "g_udev_device_get_property_keys")
+  (return-type "const-gchar**")
 )
 
 (define-method has_property
@@ -246,6 +258,15 @@
   )
 )
 
+(define-method get_property_as_strv
+  (of-object "GUdevDevice")
+  (c-name "g_udev_device_get_property_as_strv")
+  (return-type "const-gchar**")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
 (define-method get_sysfs_attr
   (of-object "GUdevDevice")
   (c-name "g_udev_device_get_sysfs_attr")
@@ -291,7 +312,14 @@
   )
 )
 
-
+(define-method get_sysfs_attr_as_strv
+  (of-object "GUdevDevice")
+  (c-name "g_udev_device_get_sysfs_attr_as_strv")
+  (return-type "const-gchar**")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
 
 ;; From gudevenums.h
 

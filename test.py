@@ -19,15 +19,18 @@ def print_device(device):
     print "device type:", device.get_device_type()
     print "device number:", device.get_device_number()
     print "device file:", device.get_device_file()
+    print "device file symlinks:", ", ".join(device.get_device_file_symlinks())
+    print "device keys:", ", ".join(device.get_property_keys())
 
 def on_uevent(client, action, device):
     print "UEVENT"
     print_device(device)
+    print "------", device.get_property("ID_MEDIA_PLAYER")
 
-client = gudev.Client(["block","usb/usb_interface"])
+client = gudev.Client(["block","usb"])
 client.connect("uevent", on_uevent)
 
-devices = client.query_by_subsystem("block")
+devices = client.query_by_subsystem("usb")
 for device in devices:
     print_device(device)
 
