@@ -17,7 +17,7 @@ gudev_la_SOURCES = gudevmodule.c gudev.c
 #nodist_gudev_la_SOURCES = gudev.c
 
 CLEANFILES = gudev.c
-EXTRA_DIST = gudev.override $(defs_DATA)
+EXTRA_DIST = ChangeLog gudev.override $(defs_DATA)
 
 gudev.c: gudev.defs gudev.override
 .defs.c:
@@ -31,5 +31,27 @@ gudev.c: gudev.defs gudev.override
 update-defs:
 	$(PYGOBJECT_H2DEF) /usr/include/gudev-1.0/gudev/*.h > gudev-new.defs
 
+# ChangeLog generation from nautils
+distclean-local:
+	if test "$(srcdir)" = "."; then :; else \
+		rm -f ChangeLog; \
+	fi
+
+ChangeLog:
+	@echo Creating $@
+	@if test -d "$(srcdir)/.git"; then \
+	  (GIT_DIR=$(top_srcdir)/.git ./missing --run git log 147.. --stat -M -C --name-status  --date=short --no-color) | fmt --split-only > $@.tmp \
+	  && mv -f $@.tmp $@ \
+	  || ($(RM) $@.tmp; \
+	      echo Failed to generate ChangeLog, your ChangeLog may be outdated >&2; \
+	      (test -f $@ || echo git-log is required to generate this file >> $@)); \
+	else \
+	  test -f $@ || \
+	  (echo A git checkout and git-log is required to generate ChangeLog >&2 && \
+	  echo A git checkout and git-log is required to generate this file >> $@); \
+	fi
+
 release: dist
 	scp @PACKAGE@-@VERSION@.tar.gz root@greenbirdsystems.com:/var/www/johnstowers.co.nz/files/python-gudev/
+
+.PHONY: ChangeLog update-defs
