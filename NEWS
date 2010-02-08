@@ -1,0 +1,11 @@
+NEW in 147.1:
+=============
+ * Wrap those functions that return strv
+    * g_udev_device_get_device_file_symlinks
+    * g_udev_device_get_property_keys
+    * g_udev_device_get_property_as_strv
+    * g_udev_device_get_sysfs_attr_as_strv
+
+NEW in 147.0:
+=============
+ * Initial release
