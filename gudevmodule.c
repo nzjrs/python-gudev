@@ -34,6 +34,9 @@ initgudev(void)
 	pygudev_register_classes(d);
 	pygudev_add_constants(m, "G_UDEV_");
 
+    PyModule_AddObject(m, "__version__",
+                           Py_BuildValue("s",VERSION));
+
 	if (PyErr_Occurred()) {
 		Py_FatalError("can't initialize module gudev");
 	}

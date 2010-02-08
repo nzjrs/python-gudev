@@ -7,6 +7,8 @@ sys.path.insert(0, ".libs")
 import gudev
 import glib
 
+print "GUDEV VERSION: %s" % gudev.__version__
+
 def print_device(device):
     print "subsystem", device.get_subsystem()
     print "devtype", device.get_devtype()
