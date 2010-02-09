@@ -19,7 +19,7 @@ gudev_la_SOURCES = gudevmodule.c gudev.c
 #nodist_gudev_la_SOURCES = gudev.c
 
 CLEANFILES = gudev.c
-EXTRA_DIST = NEWS ChangeLog gudev.override $(defs_DATA)
+EXTRA_DIST = NEWS ChangeLog gudev.override $(defs_DATA) test.py
 
 gudev.c: gudev.defs gudev.override
 .defs.c:
