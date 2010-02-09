@@ -1,6 +1,8 @@
 defsdir = $(datadir)/pygobject/2.0/defs
 defs_DATA = gudev.defs
 
+ACLOCAL_AMFLAGS = -I m4
+
 INCLUDES = \
 	$(GUDEV_CFLAGS) \
 	$(GOBJECT_CFLAGS) \
