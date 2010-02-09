@@ -9,8 +9,8 @@ INCLUDES = \
 	$(PYGOBJECT_CFLAGS) \
 	$(PYTHON_INCLUDES)
 
-pkgpythondir = $(pyexecdir)/gtk-2.0
-pkgpyexecdir = $(pyexecdir)/gtk-2.0
+pkgpythondir = $(pyexecdir)
+pkgpyexecdir = $(pyexecdir)
 
 pkgpyexec_LTLIBRARIES = gudev.la
 gudev_la_LDFLAGS = -module -avoid-version -export-symbols-regex initgudev
