@@ -147,7 +147,7 @@ _wrap_g_udev_client_query_by_subsystem (PyGObject *self, PyObject *args, PyObjec
     GSList *source;
     PyObject *dest;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s:GUdevClient.query_by_subsystem",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|z:GUdevClient.query_by_subsystem",
                                      kwlist, &subsystem))
         return NULL;
 

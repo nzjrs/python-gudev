@@ -57,7 +57,7 @@
   (c-name "g_udev_client_query_by_subsystem")
   (return-type "GList*")
   (parameters
-    '("const-gchar*" "subsystem")
+    '("const-gchar*" "subsystem" (null-ok) (default "NULL"))
   )
 )
 
