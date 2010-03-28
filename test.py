@@ -23,7 +23,7 @@ def print_device(device):
     print "device file:", device.get_device_file()
     print "device file symlinks:", ", ".join(device.get_device_file_symlinks())
     print "device keys:", ", ".join(device.get_property_keys())
-	for device_key in device.get_property_keys():
+    for device_key in device.get_property_keys():
         print "   device property %s: %s"  % (device_key, device.get_property(device_key))
 
 def on_uevent(client, action, device):
@@ -38,4 +38,5 @@ devices = client.query_by_subsystem("usb")
 for device in devices:
     print_device(device)
 
+print "\n --- WAITING FOR EVENTS ---"
 glib.MainLoop().run()
