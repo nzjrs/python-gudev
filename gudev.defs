@@ -267,6 +267,21 @@
   )
 )
 
+(define-method get_sysfs_attr_keys
+  (of-object "GUdevDevice")
+  (c-name "g_udev_device_get_sysfs_attr_keys")
+  (return-type "const-gchar**")
+)
+
+(define-method has_sysfs_attr
+  (of-object "GUdevDevice")
+  (c-name "g_udev_device_has_sysfs_attr")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "key")
+  )
+)
+
 (define-method get_sysfs_attr
   (of-object "GUdevDevice")
   (c-name "g_udev_device_get_sysfs_attr")
