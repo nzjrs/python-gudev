@@ -202,6 +202,19 @@ _wrap_g_udev_device_get_property_as_strv (PyGObject *self, PyObject *args, PyObj
     return py_ret;
 }
 %%
+override g_udev_device_get_sysfs_attr_keys noargs
+static PyObject *
+_wrap_g_udev_device_get_sysfs_attr_keys (PyGObject *self)
+{
+    PyObject *py_ret;
+    const char * const *ret;
+
+    ret = g_udev_device_get_sysfs_attr_keys (G_UDEV_DEVICE (self->obj));
+    py_ret = strv_to_pylist ((char**) ret);
+
+    return py_ret;
+}
+%%
 override g_udev_device_get_sysfs_attr_as_strv kwargs
 static PyObject *
 _wrap_g_udev_device_get_sysfs_attr_as_strv (PyGObject *self, PyObject *args, PyObject *kwargs)
