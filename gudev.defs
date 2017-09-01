@@ -3,7 +3,7 @@
 ;; Corresponds to the standard #dev_t type as defined by POSIX (Until
 ;; bug 584517 is resolved this is aliased to an integer).
 ;;
-;; So I have replaced all occurances od GUDevDeviceNumber with int
+;; So I have replaced all occurrences od GUDevDeviceNumber with int
 
 
 ;; -*- scheme -*-
